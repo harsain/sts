@@ -1,0 +1,16 @@
+<div class="sidebar-sticky">
+    <ul class="nav flex-column sidebar">
+
+      <!-- <li *ngFor="let hero of heroes" 
+        [class.selected]="hero === selectedHero"
+        (click)="onSelect(hero)"> -->
+
+      <li *ngFor="let category of categories" 
+        [class.selected]="category === selectedCategory"
+        (click)="onSelect(category)">
+        <a class="nav-link active" href="#">
+            {{ category.name }}
+        </a>
+      </li>
+    </ul>
+  </div>

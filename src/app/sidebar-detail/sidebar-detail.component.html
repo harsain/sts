@@ -1,0 +1,13 @@
+<div *ngIf="selectedCategory">
+  <h1 class="h2">{{ selectedCategory.name }}</h1>
+
+  <app-table [headers]="headers" [data]="categoryData"></app-table>
+</div>
+
+<div *ngIf="allCategories && !selectedCategory">
+  <ul *ngFor="let category of allCategories">
+    <li>
+      {{category.name}}
+    </li>
+  </ul>
+</div>
