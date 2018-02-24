@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Category } from '../category';
 import { CategoryData } from '../category-data';
 import { CategoryService } from '../category.service';
+import { GroupBarData } from '../group-bar-data';
+import { Series } from '../series';
 
 @Component({
   selector: 'app-sidebar-detail',
@@ -17,6 +19,7 @@ export class SidebarDetailComponent implements OnInit, OnChanges {
 
   categoryData: CategoryData[];
   headers: string[] = [];
+  groupedAllCategoriesData: GroupBarData[];
 
   constructor(private categoryService: CategoryService) { }
 
@@ -24,6 +27,7 @@ export class SidebarDetailComponent implements OnInit, OnChanges {
     if (this.selectedCategory) {
       this.getCategoriesData(this.selectedCategory.name);
     }
+    this.getAllCategoriesSeriesData();
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -36,6 +40,20 @@ export class SidebarDetailComponent implements OnInit, OnChanges {
       this.headers.push('Number of PNs');
       this.headers.push('Face Values');
       this.getCategoriesData(this.selectedCategory.name);
+    }
+  }
+
+  getAllCategoriesSeriesData() {
+    // console.debug(this.categoryService.getCategoryData());
+    let categoriesData: any = this.categoryService.getCategoryData();
+    for (const category in categoriesData) {
+      const seriesArr: Series[] = [];
+      categoriesData[category].forEach(element => {
+        seriesArr.push(new Series(element['year'], element['pns']));
+      });
+
+      const groupedCatData: GroupBarData = new GroupBarData(category, seriesArr);
+      console.log(groupedCatData);
     }
   }
 

@@ -1,4 +1,5 @@
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+  <a class="nav-mobile" (click)="showMenu = !showMenu"><i class="fa fas fa-bars"></i></a>
   <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Sydney Train Services</a>
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
@@ -8,10 +9,10 @@
 </nav>
 <div class="container-fluid">
   <div class="row">
-    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <nav class="col-md-2 d-md-block bg-light sidebar"  [class.openMenu]="showMenu">
       <app-sidebar [selectedCategory]="selectedCategory" (updateSelectedCategory)="selectedCategory=$event"></app-sidebar>
     </nav>
-    <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" role="main">
+    <main class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" role="main" [class.mobileMenuOpen]="showMenu">
       <app-sidebar-detail [allCategories]="allCategories" [selectedCategory]="selectedCategory" (updateSelectedCategory)="selectedCategory=$event"></app-sidebar-detail>
     </main>
   </div>
