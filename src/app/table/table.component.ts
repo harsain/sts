@@ -12,7 +12,26 @@ export class TableComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  onSorted($event){
+    this.data = this.getData($event);
   }
 
+  getData(criteria: DataSearchCriteria): any {
+    return this.data.sort(
+      (a, b) => {
+        if (criteria.sortDirection === 'desc') {
+          return a[criteria.sortColumn] < b[criteria.sortColumn];
+        } else {
+          return a[criteria.sortColumn] > b[criteria.sortColumn];
+        }
+      }
+    );
+  }
+}
+
+export class DataSearchCriteria {
+  sortColumn: string;
+  sortDirection: string;
 }

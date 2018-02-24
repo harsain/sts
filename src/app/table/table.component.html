@@ -1,15 +1,17 @@
 <div class="table-responsive">
-  <table class="table table-striped table-sm">
+  <table class="table table-striped table-sm" sortable-table (sorted)="onSorted($event)">
     <thead>
       <tr>
-        <th *ngFor="let header of headers">{{ header }}</th>
+        <th *ngFor="let header of headers; let index = index">
+          <app-sortable-column [sortable-column]="header">
+            {{ header | uppercase }}
+          </app-sortable-column>
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let row of data">
-        <td>{{ row.year }}</td>
-        <td>{{ row.pns }}</td>
-        <td>{{ row.faceValues }}</td>
+        <td *ngFor="let key of headers">{{ row[key] }}</td>
       </tr>
     </tbody>
   </table>

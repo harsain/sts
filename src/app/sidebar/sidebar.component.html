@@ -1,16 +1,20 @@
 <div class="sidebar-sticky sidebar">
-    <ul class="nav flex-column sidebar">
-
-      <!-- <li *ngFor="let hero of heroes" 
-        [class.selected]="hero === selectedHero"
-        (click)="onSelect(hero)"> -->
-
-      <li *ngFor="let category of categories" 
-        [class.selected]="category === selectedCategory"
-        (click)="onSelect(category)">
-        <a class="nav-link active" href="#">
-            {{ category.name }}
+  <h5 class="h5">  <i class="fa fa-tags"></i> Categories</h5>
+  
+  <ul class="nav flex-column sidebar">
+    <li
+      [class.selected]="selectedCategory === 'All'"
+      (click)="onSelect('All')">
+      <a class="nav-link active" href="#">
+          All
         </a>
-      </li>
-    </ul>
-  </div>
+    </li>
+    <li *ngFor="let category of categories; let index = index;" 
+      [class.selected]="category === selectedCategory"
+      (click)="onSelect(category)">
+      <a class="nav-link active" href="#">
+          {{ category.name }}
+      </a>
+    </li>
+  </ul>
+</div>

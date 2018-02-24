@@ -1,13 +1,68 @@
 <div *ngIf="selectedCategory">
   <h1 class="h2">{{ selectedCategory.name }}</h1>
 
+  <div class="card">
+    <h5 class="card-header">PNs</h5>
+    <div class="card-body">
+      <div>  
+        <ngx-charts-bar-vertical-2d
+          [results]="selectedCategoryData"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+    </div>
+  </div>
+
   <app-table [headers]="headers" [data]="categoryData"></app-table>
+  
 </div>
 
 <div *ngIf="allCategories && !selectedCategory">
-  <ul *ngFor="let category of allCategories">
-    <li>
-      {{category.name}}
-    </li>
-  </ul>
+  <div class="card">
+    <h5 class="card-header">PNs</h5>
+    <div class="card-body">
+      <div>  
+        <ngx-charts-bar-vertical-2d
+          [results]="groupedAllCategoriesData"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h5 class="card-header">FaceValues</h5>
+    <div class="card-body">
+      <div>  
+        <ngx-charts-bar-vertical-2d
+          [results]="groupedFaceValuesOfAllCategories"
+          [gradient]="gradient"
+          [xAxis]="showXAxis"
+          [yAxis]="showYAxis"
+          [showXAxisLabel]="showXAxisLabel"
+          [showYAxisLabel]="showYAxisLabel"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          (select)="onSelect($event)">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+    </div>
+  </div>
+
+  <div id="table-container">
+    <app-table [headers]="headers" [data]="allCategoriesTableData"></app-table>
+  </div>
 </div>

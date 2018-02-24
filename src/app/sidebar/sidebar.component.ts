@@ -12,7 +12,7 @@ import { Category } from '../category';
 export class SidebarComponent implements OnInit, OnChanges {
 
   categories: Category[];
-  @Input() selectedCategory: Category;
+  @Input() selectedCategory: any;
   @Output() updateSelectedCategory = new EventEmitter<any>();
 
   onSelect(category: Category): void {
@@ -23,6 +23,9 @@ export class SidebarComponent implements OnInit, OnChanges {
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
+    if (!this.selectedCategory) {
+      this.selectedCategory = 'All';
+    }
     this.getCategories();
   }
 
@@ -32,8 +35,6 @@ export class SidebarComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const category: SimpleChange = changes.selectedCategory;
-    console.log('prev value: ', category.previousValue);
-    console.log('got name: ', category.currentValue);
     this.selectedCategory = category.currentValue;
     this.updateSelectedCategory.emit(this.selectedCategory);
   }
