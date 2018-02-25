@@ -16,8 +16,6 @@ export class AppComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     const category: SimpleChange = changes.selectedCategory;
-    console.log('prev value: ', category.previousValue);
-    console.log('got name: ', category.currentValue);
     this.updateSelectedCategory.emit(this.selectedCategory);
   }
 
@@ -38,7 +36,6 @@ export class AppComponent implements OnInit, OnChanges {
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (event.target.innerWidth  > 786) {
-      console.log("RESIZE > 786");
       this.showMenu = false;
     }
   }

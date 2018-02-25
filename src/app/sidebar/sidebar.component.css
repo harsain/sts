@@ -4,14 +4,27 @@
   font-size: 0.9rem;
 }
 
+.sidebar-header {
+  padding: 0.5rem;
+}
+
 .sidebar .nav-link {
   font-weight: 500;
   color: #333;
+  text-align: left;
 }
 
 .selected {
   background-color: #CFD8DC !important;
   color: white;
+}
+
+.sidebar li {
+  border-bottom: dotted darkseagreen;
+}
+
+.sidebar li:first-child {
+  border-top: dotted darkseagreen;
 }
 
 .sidebar li.selected:hover {

@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SidebarComponent } from './sidebar.component';
+import { By } from '@angular/platform-browser';
+import { DebugElement } from '@angular/core';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
@@ -21,5 +23,11 @@ describe('SidebarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should bklha bklha', () => {
+    let de: DebugElement = fixture.debugElement.query(By.css('sidebar-header'));
+    let el: HTMLElement = de.nativeElement;
+    console.log(el);
   });
 });

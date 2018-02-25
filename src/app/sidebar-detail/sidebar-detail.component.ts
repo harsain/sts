@@ -34,7 +34,7 @@ export class SidebarDetailComponent implements OnInit, OnChanges {
   showYAxisLabel = true;
   yAxisLabel = 'Count';
 
-  constructor(private categoryService: CategoryService) { }
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
     this.groupedAllCategoriesData = this.getAllCategoriesSeriesData().pns;
@@ -62,7 +62,6 @@ export class SidebarDetailComponent implements OnInit, OnChanges {
 
   getGroupedDataForCategory(category: Category): GroupBarData[] {
     let categoryData: GroupBarData[] = [];
-    console.debug(this.getAllCategoriesSeriesData().pns);
     this.getAllCategoriesSeriesData().pns.forEach(elem => {
       if (elem.name === category.name) {
         elem.series.forEach( pnsData => {

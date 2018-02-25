@@ -1,22 +1,31 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
+import { SidebarDetailComponent } from './sidebar-detail/sidebar-detail.component';
+import { Category } from './category';
+import { CategoryService } from './category.service';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Component, Directive, Pipe } from '@angular/core';
+
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        HeroesComponent,
-        HeroDetailComponent
+        SidebarComponent,
+        SidebarDetailComponent,
+        NgxChartsModule
       ],
       imports: [ FormsModule ]
     }).compileComponents();
   }));
   it('should create the app', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
+    const component: AppComponent = fixture.componentInstance;
+    component.allCategories = new CategoryService().getCategories();
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
